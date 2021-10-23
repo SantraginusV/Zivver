@@ -16,6 +16,16 @@
     <ScrollViewer HorizontalScrollBarVisibility="Auto"
                   VerticalScrollBarVisibility="Auto">
         <ListBox ItemsSource="{Binding}">
+            <ListBox.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Color="#E8A49C" Offset="0.0" />
+                        <GradientStop Color="#6C8CBF" Offset="0.25" />
+                        <GradientStop Color="#E5C1CD" Offset="0.75" />
+                        <GradientStop Color="#F9C449" Offset="1.0" />
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </ListBox.Background>
             <!-- PostPanelViewModel -->
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -25,7 +35,6 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5"
-                                         Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                                          Padding="5"
                                          UniformCornerRadius="10">
                         <Grid>
@@ -39,10 +48,9 @@
                                               MouseAction="LeftClick" />
                             </Grid.InputBindings>
 
-                            <materialDesign:Card Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                                                 Padding="10 0"
+                            <materialDesign:Card Padding="10 0"
                                                  UniformCornerRadius="10"
-                                                 Background="#6a1b9a"
+                                                 Background="#663399"
                                                  Width="auto"
                                                  Grid.Row="0"
                                                  HorizontalAlignment="Left"
