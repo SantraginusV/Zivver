@@ -4,43 +4,124 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Zivver.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal" 
+             TextOptions.TextRenderingMode="Auto"        
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
              mc:Ignorable="d">
     <ScrollViewer HorizontalScrollBarVisibility="Auto"
                   VerticalScrollBarVisibility="Auto">
-        <ListBox ItemsSource="{Binding}"> <!-- PostPanelViewModel -->
-                <ListBox.ItemsPanel>
+        <ListBox ItemsSource="{Binding}">
+            <!-- PostPanelViewModel -->
+            <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="10" Rows="10"/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderThickness="2"
-                            CornerRadius="10"
-                            BorderBrush="LightGray">
+                    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                                         Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                                         Padding="5"
+                                         UniformCornerRadius="10">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Text="{Binding Id}" TextWrapping="Wrap">
-                                <TextBlock.InputBindings>
-                                    <MouseBinding Command="{Binding ChangeCurrentIdsCommand}"
-                                                  CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                                                  MouseAction="LeftClick" />
-                                </TextBlock.InputBindings>
-                            </TextBlock>
-                            <TextBlock Grid.Row="1" Text="{Binding Title}" TextWrapping="Wrap" />
-                            <TextBlock Grid.Row="2" Text="{Binding Body}" TextWrapping="Wrap" />
+                            <Grid.InputBindings>
+                                <MouseBinding Command="{Binding ChangeCurrentIdsCommand}"
+                                              CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                              MouseAction="LeftClick" />
+                            </Grid.InputBindings>
+
+                            <materialDesign:Card Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                                                 Padding="10 0"
+                                                 UniformCornerRadius="10"
+                                                 Background="#6a1b9a"
+                                                 Width="auto"
+                                                 Grid.Row="0"
+                                                 HorizontalAlignment="Left"
+                                                 Margin="0 0 0 10">
+                                <Grid>
+                                    <TextBlock Text="{Binding Id}" 
+                                           TextWrapping="Wrap"
+                                           Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                                </Grid>
+                            </materialDesign:Card>
+
+                            <materialDesign:Card Grid.Row="1"
+                                                 Margin="0 10 0 0"
+                                                 Padding="10 5 5 10"
+                                                 UniformCornerRadius="10"
+                                                 Background="#515151">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" 
+                                           Text="{Binding Title}" 
+                                           TextWrapping="Wrap"
+                                           Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                                    <Separator  Grid.Row="1" />
+                                    <TextBlock Grid.Row="2"
+                                           Text="{Binding Body}" 
+                                           TextWrapping="Wrap"
+                                           Style="{StaticResource MaterialDesignBody2TextBlock}" />
+                                </Grid>
+                            </materialDesign:Card>
+                            
                         </Grid>
-                    </Border>
+                    </materialDesign:Card>
                 </DataTemplate>
             </ListBox.ItemTemplate>
             <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
                     <Setter Property="Padding" Value="0"/>
                     <Setter Property="Margin" Value="6"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Width" Value="300"/>
+
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="true">
+                                        <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                                    </Trigger>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsSelected" Value="true"/>
+                                            <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                                        </MultiTrigger.Conditions>
+                                        <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}}"/>
+                                    </MultiTrigger>
+                                    <Trigger Property="IsEnabled" Value="false">
+                                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Trigger>
+                    </Style.Triggers>
+
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
