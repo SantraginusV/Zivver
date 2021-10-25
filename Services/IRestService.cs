@@ -2,6 +2,9 @@
 
 namespace Zivver.Services
 {
+    /// <summary>
+    /// Interface for Rest service that will be injected in class where we need to call some external API
+    /// </summary>
     public interface IRestService
     {
         Task<string> GetAsync(string url);

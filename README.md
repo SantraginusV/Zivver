@@ -13,9 +13,17 @@
 # Application details
 ## Prerequisites
 
+	- .Net Core 3.1
+
 ## Installation and running the app
 
+	Application can be published from Visual Studio. Inside folder `bin\publish\` file named Zivver.exe will be created to run the app.
+
+	The app can also be run directly from within Visual Studio.
+
 ## Troubleshooting
+
+	For logging, I've used SeriLog. File is stored in `Logs` folder. The path can be changed in App.xaml.cs.
 
 
 # Q&A section

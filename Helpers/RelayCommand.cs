@@ -4,7 +4,8 @@ using System.Windows.Input;
 namespace Zivver.Helpers
 {
     /// <summary>
-    /// 
+    /// RelayCommand is used to separate front and backend logic. 
+    /// Using relay commands, methods from business logic (ViewModels and Controllers) are exposed to Views.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class RelayCommand<T> : ICommand

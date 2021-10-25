@@ -91,7 +91,7 @@ namespace Zivver
         private Serilog.ILogger LoggingConfig()
         {
             return new LoggerConfiguration()
-                .WriteTo.File(@"C:\Users\spad\Documents\GIT\Zivver\log.txt")
+                .WriteTo.File(@".\Logs\log.txt")
                 .CreateLogger();
         }
 

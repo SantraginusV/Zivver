@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace Zivver.Services
 {
+    /// <summary>
+    /// Implementation of IRestService
+    /// </summary>
     // Error handling will be done where rest service is used
     public class RestService : IRestService
     {
