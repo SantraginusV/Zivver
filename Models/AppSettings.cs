@@ -3,7 +3,5 @@
     public class AppSettings
     {
         public string URL { get; set; }
-
-        public string LogLocation { get; set; }
     }
 }

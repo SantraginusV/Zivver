@@ -22,6 +22,7 @@ namespace Zivver
 
         public App()
         {
+            // this is for Dependency Injection of services
             _host = new HostBuilder()
                     .ConfigureAppConfiguration((context, configurationBuilder) =>
                     {
@@ -84,7 +85,7 @@ namespace Zivver
                 Shutdown(-1);
             }
 
-            // we need to set it 
+            // we need to set it, to flag that is handled 
             ex.Handled = true;
         }
 

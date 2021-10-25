@@ -40,7 +40,6 @@ namespace Zivver.ViewModels
 
         private void LoadPosts()
         {
-            //check this Thread.Run
             _client.GetAsync(_config["URL"]).ContinueWith(task =>
             {
                 if (task.Exception == null)
