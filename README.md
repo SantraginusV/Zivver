@@ -91,7 +91,7 @@ await Task.Run(() => { SomeAPIWork });
 	a. How would you do this using LINQ syntax (write a short example)?  
 ```C#
 var result = file.GroupBy(
-f = >f.productId, f = >f.availableIn, (id, langs) = >new {
+    f => f.productId, f => f.availableIn, (id, langs) => new {
 	productId = id,
 	availableIn = langs.ToList()
 });
